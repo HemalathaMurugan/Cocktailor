@@ -12,9 +12,11 @@ recipes.each do |recipe|
   new_recipe = Recipe.create(name: recipe["name"], glass_type: recipe["glass"], category: recipe["category"], instructions: recipe["preparation"])
   recipe["ingredients"].each do |ingredient|
     if ingredient["ingredient"] != nil
-      recipe_ing = Ingredient.find_or_create_by(name: ingredient["ingredient"])
+      recipe_ing = Ingredient.find_or_create_by(name: ingredient["ingredient"], ingredient_type: "Main ingredient")
       RecipeIngredient.create(recipe_id: new_recipe, ingredient_id: recipe_ing, amount: ingredient["amount"])
-    else
+    elsif ingredient["special"] != nil
+      recipe_ing = Ingredient.find_or_create_by(name: ingredient["special"], ingredient_type: "Special ingredient")
+      RecipeIngredient.create(recipe_id: new_recipe, ingredient_id: recipe_ing, amount: 1)
     end
   end
 end
