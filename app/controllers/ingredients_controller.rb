@@ -1,13 +1,22 @@
 class IngredientsController < ApplicationController
 
+  #before_action :define_current_pet
   #Create
   def new
+    @errors = flash[:errors] || {}
     @ingredient = Ingredient.new
   end
 
   def create
-    ingredient = Ingredient.create(ingredient_params)
-    redirect_to ingredient
+    ingredient = Ingredient.new(ingredient_params)
+    if ingredient.valid?
+      ingredient.save
+      redirect_to ingredient
+    else
+      flash[:errors] = ingredient.errors.messages
+      #flash[:ingredient_attributes] = ingredient.attributes
+      redirect_to new_ingredient_path
+    end
   end
 
   #Read
