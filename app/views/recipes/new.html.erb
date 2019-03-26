@@ -1,20 +1,34 @@
 <h2>Create a New Recipe:</h2>
 
-<%= form_for(@recipe) do |f|%>
-    <label>Enter the name:</label>
+<%= form_with url: '/recipes/new', model: @recipe do |f|%>
+    <label>Drink Name:</label>
     <%= f.text_field :name %><br>
+    <br>
 
     <label>Description:</label>
     <%= f.text_area :description %><br>
+    <br><br>
+    <label>Ingredients:</label>
+    <ul>
+      <%= f.fields_for :ingredients do |ingredient| %>
+      <li>
+        <%= ingredient.label :name %>
+        <%= ingredient.text_field :name %>
+        <%= ingredient.label :amount %>
+        <%= ingredient.text_field :amount %>
+      </li>
+      <% end %>
+    </ul>
 
     <label>Instructions:</label>
-    <%= f.text_area :instructions%><br>
+    <%= f.text_area :instructions%><br><br>
 
     <label>Choose the Glass type: </label>
-    <%= f.collection_select :glass_type, @glasses, :glass_type, :glass_type %><br>
+    <%= f.collection_select :glass_type, @glasses, :glass_type, :glass_type %><br><br>
 
     <label>Choose the Category:</label>
-    <%= f.collection_select :category, @categories, :category, :category %><br>
+    <%= f.collection_select :category, @categories, :category, :category %><br><br>
 
-    <%= f.submit %>
+    <%= f.submit "Create Recipe"%>
+
 <% end %>
