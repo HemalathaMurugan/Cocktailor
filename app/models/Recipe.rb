@@ -3,9 +3,9 @@ class Recipe < ActiveRecord::Base
   has_many :ingredients, through: :recipe_ingredients
   has_many :user_recipes
   has_many :users, through: :user_recipes
-  # accepts_nested_attributes_for :ingredients
+  accepts_nested_attributes_for :ingredients
 
-  #validates :name, uniqueness: true
+  validates :name, uniqueness: true
   before_save :titleize_glasses, :fix_nil_in_categories
 
   def titleize_glasses
