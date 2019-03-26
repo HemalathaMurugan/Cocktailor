@@ -1,6 +1,6 @@
 <h2>Create a New Recipe:</h2>
 
-<%= form_with url: recipes_new_path, model: @recipe do |f|%>
+<%= form_with url: '/recipes/new', model: @recipe do |f|%>
     <label>Enter the name:</label>
     <%= f.text_field :name %><br>
 
@@ -8,13 +8,6 @@
     <%= f.text_area :description %><br>
 
     <ul>
-      <% if @recipe.recipe_ingredients != [] %>
-        <% @recipe.recipe_ingredients.each do |r_i| %>
-          <li>
-            <%= 'Name: ' + r_i.ingredient.name + ', Amount: ' + r_i.amount %>
-          </li>
-        <% end %>
-      <% end %>
 
       <%= f.fields_for :ingredients do |ingredient| %>
       <li>
@@ -36,5 +29,18 @@
     <label>Choose the Category:</label>
     <%= f.collection_select :category, @categories, :category, :category %><br>
 
-    <%= f.submit %>
+    <%= f.submit "Create Recipe"%>
+
 <% end %>
+
+
+
+    <% byebug %>
+    <% if @recipe_ingredients != nil %>
+      <% @recipe_ingredients.each do |r_i| %>
+      <% byebug%>
+        <li>
+          Name: <%=r_i.ingredient.name%>, Amount: <%=r_i.amount%>
+        </li>
+      <% end %>
+    <% end %>
