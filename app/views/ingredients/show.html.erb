@@ -2,3 +2,12 @@
 
 <p>Name: <%= @ingredient.name %>
 <p>Type: <%= @ingredient.ingredient_type %>
+
+<h3>Drinks that include <%= @ingredient.name %></h3>
+<ul>
+  <% @recipes.each do |rec| %>
+    <li>
+      <%= link_to rec.name, recipe_path(rec) %>
+    </li>
+  <% end %>
+</ul>

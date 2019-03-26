@@ -21,12 +21,14 @@ class IngredientsController < ApplicationController
 
   #Read
   def index
-    @ingredients = Ingredient.all
-    
+    @main_ingredients = Ingredient.all.select{|i| i.ingredient_type == "Main ingredient"}
+    @special_ingredients = Ingredient.all.select{|i| i.ingredient_type == "Special ingredient"}
+
   end
 
   def show
     @ingredient = Ingredient.find(params[:id])
+    @recipes = @ingredient.recipes
   end
 
   #Update
@@ -43,6 +45,6 @@ class IngredientsController < ApplicationController
   #strong params
   def ingredient_params
     params.require(:ingredient).permit(:name, :ingredient_type)
-  
+
   end
 end

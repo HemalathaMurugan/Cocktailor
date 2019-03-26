@@ -1,6 +1,5 @@
 <h2>Recipe Page:</h2>
-<ul>
-<label>Name:</label> 
+<label>Name:</label>
 <%= @recipe.name %><br>
 
 <label>Description: </label>
@@ -12,4 +11,18 @@
 <label>Category: </label>
 <%= @recipe.category %><br>
 
+<h3>Ingredients:</h3>
+<ul>
+<% @ingredients.each do |ing| %>
+  <li>
+    <% if ing.ingredient_type == "Main ingredient" %>
+      <%= ing.recipe_ingredients.select{|r_i| r_i.recipe == @recipe}.first.amount %> cls of <%= link_to ing.name, ingredient_path(ing) %>
+    <% else %>
+      <%= ing.name %>
+    <% end %>
+  </li>
+<% end %>
 </ul>
+
+<h4>Preparation:</h4>
+<%= @recipe.instructions %>

@@ -14,10 +14,10 @@ recipes.each do |recipe|
   recipe["ingredients"].each do |ingredient|
     if ingredient["ingredient"] != nil
       recipe_ing = Ingredient.find_or_create_by(name: ingredient["ingredient"], ingredient_type: "Main ingredient")
-      RecipeIngredient.create(recipe_id: new_recipe, ingredient_id: recipe_ing, amount: ingredient["amount"])
+      RecipeIngredient.create(recipe_id: new_recipe.id, ingredient_id: recipe_ing.id, amount: ingredient["amount"])
     elsif ingredient["special"] != nil
       recipe_ing = Ingredient.find_or_create_by(name: ingredient["special"], ingredient_type: "Special ingredient")
-      RecipeIngredient.create(recipe_id: new_recipe, ingredient_id: recipe_ing, amount: 1)
+      RecipeIngredient.create(recipe_id: new_recipe.id, ingredient_id: recipe_ing.id, amount: 1)
     end
   end
 end
