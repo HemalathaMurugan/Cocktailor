@@ -1,6 +1,7 @@
 require 'json'
 
-path = "/Users/flatironschool/Development/projects/2-Module/cocktail_recipe_site/db/seed_files/iba_recipes.json"
+
+path = Rails.root + "db/seed_files/iba_recipes.json"
 
 Recipe.destroy_all
 Ingredient.destroy_all
