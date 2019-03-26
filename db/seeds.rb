@@ -6,6 +6,7 @@ path = Rails.root + "db/seed_files/iba_recipes.json"
 Recipe.destroy_all
 Ingredient.destroy_all
 RecipeIngredient.destroy_all
+User.destroy_all
 
 recipes = JSON.parse(File.read(path))
 recipes.each do |recipe|
@@ -21,3 +22,11 @@ recipes.each do |recipe|
     end
   end
 end
+100.times do 
+  User.create(
+    username: Faker::Name.name,
+    first_name: Faker::Name.first_name,
+    #password_digest: SecureRandom.alphanumeric(8)
+    password_digest: Faker::Internet.password(8)
+  )
+  end
