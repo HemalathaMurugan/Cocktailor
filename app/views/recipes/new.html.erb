@@ -11,10 +11,10 @@
     <%= f.text_area :instructions%><br>
 
     <label>Choose the Glass type: </label>
-    <%= f.collection_select %><br>
+    <%= f.collection_select :glass_type, @glasses, :glass_type, :glass_type %><br>
 
     <label>Choose the Category:</label>
-    <%= f.collection_select  %><br>
+    <%= f.collection_select :category, @categories, :category, :category %><br>
 
     <%= f.submit %>
 <% end %>
