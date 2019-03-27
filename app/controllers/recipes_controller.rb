@@ -6,6 +6,7 @@ class RecipesController < ApplicationController
       6.times { @recipe.ingredients.build }
       @glasses = Recipe.glasses
       @categories = Recipe.categories
+      @ingredients = Ingredient.all
     end
 
     def create

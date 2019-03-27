@@ -1,6 +1,6 @@
 <h2>Create a New Recipe:</h2>
 
-<%= form_with url: '/recipes/new', model: @recipe do |f|%>
+<%= form_with url: '/recipes', model: @recipe do |f|%>
     <label>Drink Name:</label>
     <%= f.text_field :name %><br>
     <br>
@@ -9,13 +9,18 @@
     <%= f.text_area :description %><br>
     <br><br>
     <label>Ingredients:</label>
+    <p>If you consider an ingredient a main ingredient, enter its amount in centiliters. 3 centiliters is equivalent to 1 ounce. Examples of main ingredients are Rum, Whiskey, Vermouth, and Lemon Juice. If your ingredient is not a main ingredient, leave amount blank and describe the amount in the name. For example, "2 dashes of bitters" or "2 fresh mint leaves" or "Salt".</p>
     <ul>
       <%= f.fields_for :ingredients do |ingredient| %>
       <li>
         <%= ingredient.label :name %>
-        <%= ingredient.text_field :name %>
+        <%= ingredient.text_field :name, list: "ingredient_autocomplete", value: '' %>
         <%= ingredient.label :amount %>
         <%= ingredient.text_field :amount %>
+          <datalist id="ingredient_autocomplete">
+          <%= @ingredients.each do |ingredient|%>
+           <option value="<%=ingredient.name%>">
+          <%end%>
       </li>
       <% end %>
     </ul>
