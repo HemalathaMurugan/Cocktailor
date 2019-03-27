@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>CocktailRecipeSite</title>
+    <title>Cocktailored</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -11,5 +11,14 @@
 
   <body>
     <%= yield %>
+
+
   </body>
+  <footer>
+    <br>
+    <br>
+    <%= link_to "Recipes", recipes_path %><br>
+    <%= link_to "Ingredients", ingredients_path %>
+
+  </footer>
 </html>
