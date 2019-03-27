@@ -1,6 +1,6 @@
 <h2>Create a new User:</h2>
 
-<%= form_for :user, url: '/users' do |f| %>
+<%= form_for @user, url: '/users' do |f| %>
   Username: <%= f.text_field :username %>
   Firstname: <%= f.text_field :first_name %>
   Password: <%= f.password_field :password %>

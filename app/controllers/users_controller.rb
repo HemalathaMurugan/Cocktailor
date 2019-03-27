@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
   #before_action :require_login
   #skip_before_action :require_login, only: [:index]
-  #skip_before_action :authenticate, only [:new, :create]
+  skip_before_action :authenticate, only: [:new, :create]
 
-  
+
   #Create
   def new
     #@errors = flash[:errors] || {}
@@ -11,18 +11,19 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.new(user_params[:user])
-    if user.valid?
-        user.save
+    @user = User.new(user_params)
+    byebug
+    if @user.valid?
+      byebug
+        @user.save
         flash[:notice] = "You signed up successfully!"
         flash[:color] = "valid"
-        #redirect_to '/users'
+        redirect_to @user
     else
       flash[:notice] = "Try a different name"
       flash[:color] = "invalid"
-      #redirect_to new_user_path
+      render :new
     end
-    render "new"
   end
 
   #Read
@@ -54,7 +55,7 @@ class UsersController < ApplicationController
       flash[:user_attributes] = user.attributes
     end
     redirect_to user
-    
+
   end
 
   #Destroy
@@ -65,6 +66,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:user_name,:password, :password_confirmation, :password_digest, :first_name)
+    params.require(:user).permit(:username, :first_name, :password, :password_confirmation)
   end
 end
