@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FooBartender</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <header>
+    FooBartender-
+    <%= link_to "Recipes", recipes_path%>
+    ||
+    <%= link_to "Ingredients", ingredients_path%>
+  </header>
+
+  <body>
+    <%= yield %>
+
+<!--
+
+  </body>
+  <footer>
+    <br>
+    <br>
+    <%= link_to "Recipes", recipes_path %><br>
+    <%= link_to "Ingredients", ingredients_path %>
+
+  </footer>
+</html>
+
+-->

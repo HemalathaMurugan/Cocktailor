@@ -12,9 +12,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    byebug
     if @user.valid?
-
         @user.save
         flash[:notice] = "You signed up successfully!"
         flash[:color] = "valid"

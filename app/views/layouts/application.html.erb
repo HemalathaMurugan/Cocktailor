@@ -20,6 +20,16 @@
         </style>
 </head>
 
+  <header>
+    FooBartender- <%= link_to "Home", @user%>
+    ||
+    <%= link_to "Recipes", recipes_path%>
+    ||
+    <%= link_to "Ingredients", ingredients_path%>
+    ||
+    <%= link_to "Login/Logout", new_session_path%>
+  </header>
+
   <body>
     <%= yield %>
 

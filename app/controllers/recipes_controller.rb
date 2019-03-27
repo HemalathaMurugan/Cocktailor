@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-
+    skip_before_action :authenticate, only: [:index]
     #Create
     def new
       @recipe = Recipe.new
@@ -27,7 +27,6 @@ class RecipesController < ApplicationController
     def show
       @recipe = Recipe.find(params[:id])
       @ingredients = @recipe.ingredients
-      @user = User.find(session[:current_user_id])
     end
 
     #Update
@@ -65,9 +64,7 @@ class RecipesController < ApplicationController
 
     def add_recipe
       @recipe = Recipe.find(params[:id])
-      @user = User.find(session[:current_user_id])
       UserRecipe.create(user: @user, recipe: @recipe)
-      #@recipes = @ingredient.recipes
       redirect_to @recipe
     end
 

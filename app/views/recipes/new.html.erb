@@ -14,7 +14,8 @@
       <%= f.fields_for :ingredients do |ingredient| %>
       <li>
         <%= ingredient.label :name %>
-        <%= ingredient.text_field :name, list: "ingredient_autocomplete", value: '' %>
+        <% byebug %>
+        <%= ingredient.text_field :name, list: "ingredient_autocomplete", value: ingredient.name %>
         <%= ingredient.label :amount %>
         <%= ingredient.text_field :amount %>
           <datalist id="ingredient_autocomplete">
