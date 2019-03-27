@@ -1,15 +1,35 @@
-<h2>Ingredient Info:</h2>
 
-<p>Name: <%= @ingredient.name %>
-<p>Type: <%= @ingredient.ingredient_type %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>FooBarTender</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
 
-<% if @user.ingredients.include?(@ingredient)%>
-  <h3><%= "This ingredient is in your bar"%></h3>
-<% else%>
-  <%= form_with(url: "/add_ingredient/#{@ingredient.id}", method: :post) do |f| %>
-    <%= f.submit "Add this ingredient to your bar"%>
-  <% end %>
-<% end %>
+<body>
+
+<div class="jumbotron text-center">
+      <h2>Ingredient Info</h2>
+
+      <p>Name: <%= @ingredient.name %>
+      <p>Type: <%= @ingredient.ingredient_type %>
+
+
+      <% if @user.ingredients.include?(@ingredient)%>
+        <h3><%= "This ingredient is in your bar"%></h3>
+      <% else%>
+        <%= form_with(url: "/add_ingredient/#{@ingredient.id}", method: :post) do |f| %>
+          <%= f.submit "Add this ingredient to your bar"%>
+        <% end %>
+      <% end %>
+</div>
+
+
 
 <h3>Drinks that include <%= @ingredient.name %></h3>
 <ul>

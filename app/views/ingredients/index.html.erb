@@ -1,15 +1,33 @@
-<h3><%= link_to "Click here to create new Ingredient", new_ingredient_path%></h3>
 
-<h2>Main Ingredients</h2>
-<ul>
-<% @main_ingredients.each do |i|%>
-    <li><%= link_to i.name, i %></li>
-<% end %>
-</ul>
 
-<h2>Special Ingredients</h2>
-<ul>
-<% @special_ingredients.each do |i|%>
-    <li><%= link_to i.name, i %></li>
-<% end %>
-</ul>
+<div class="jumbotron text-center">
+        <h3>Ingredients List</h3>
+        
+        <p><%= link_to "Click here to create new Ingredient", new_ingredient_path%></p>
+</div>
+
+
+<div class="container">
+  <div class="row">
+
+        <div class="col-sm-5">
+
+
+            <h4>Main Ingredients</h4>
+            <ul>
+            <% @main_ingredients.each do |i|%>
+                <li><%= link_to i.name, i %></li>
+            <% end %>
+            </ul>
+        </div>
+
+        <div class="col-sm-5">
+            <h4>Special Ingredients</h4>
+            <ul>
+            <% @special_ingredients.each do |i|%>
+                <li><%= link_to i.name, i %></li>
+            <% end %>
+            </ul>
+        </div>
+    </div>
+</div>
