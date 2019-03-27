@@ -15,3 +15,10 @@
     <li><%= link_to rec.name, rec %></li>
   <% end %>
 </ul>
+
+<h3>Your saved recipes:</h3>
+<ul>
+  <% @recipes.each do |rec| %>
+    <li><%= link_to rec.name, rec %></li>
+  <% end %>
+</ul>

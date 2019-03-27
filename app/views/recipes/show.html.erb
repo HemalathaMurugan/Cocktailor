@@ -26,3 +26,11 @@
 
 <h4>Preparation:</h4>
 <%= @recipe.instructions %>
+<br><br>
+<% if @user.recipes.include?(@recipe)%>
+  <h3><%= "You've saved this recipe"%></h3>
+<% else%>
+  <%= form_with(url: "/add_recipe/#{@recipe.id}", method: :get) do |f| %>
+    <%= f.submit "Save this recipe"%>
+  <% end %>
+<% end %>

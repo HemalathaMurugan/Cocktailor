@@ -36,6 +36,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @ingredients = @user.ingredients
     @possible_recipes = @user.possible_recipes
+    @recipes = @user.recipes
   end
 
   #Update
@@ -68,7 +69,11 @@ class UsersController < ApplicationController
     # redirect_to '/users'
   end
 
-  def user_params
-    params.require(:user).permit(:username, :first_name, :password, :password_confirmation)
-  end
+
+
+  private
+
+    def user_params
+      params.require(:user).permit(:username, :first_name, :password, :password_confirmation)
+    end
 end

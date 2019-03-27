@@ -6,7 +6,7 @@
 <% if @user.ingredients.include?(@ingredient)%>
   <h3><%= "This ingredient is in your bar"%></h3>
 <% else%>
-  <%= form_with(url: "/test_path/#{@ingredient.id}", method: :get) do |f| %>
+  <%= form_with(url: "/add_ingredient/#{@ingredient.id}", method: :get) do |f| %>
     <%= f.submit "Add this ingredient to your bar"%>
   <% end %>
 <% end %>
