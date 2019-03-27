@@ -1,9 +1,26 @@
-<h2>Create a new User:</h2>
-
+<!--new user page-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="jumbotron text-center">
+  <h1>Welcome to CockTailORed!</h1>
+  <p>SignUp to create an account</p> 
+</div>
+<ul>
 <%= form_for @user, url: '/users' do |f| %>
-  Username: <%= f.text_field :username %>
-  Firstname: <%= f.text_field :first_name %>
-  Password: <%= f.password_field :password %>
-  Password Confirmation: <%= f.password_field :password_confirmation %>
-  <%= f.submit "Submit" %>
+  Username: <%= f.text_field :username %><br>
+  Firstname: <%= f.text_field :first_name %><br>
+  Password: <%= f.password_field :password %><br>
+  Confirm Password: <%= f.password_field :password_confirmation %><br>
+  <%= f.submit "Submit" %><br>
 <% end %>
+
