@@ -3,6 +3,13 @@
 <p>Name: <%= @ingredient.name %>
 <p>Type: <%= @ingredient.ingredient_type %>
 
+<% if %>
+  <%= "This ingredient is in your bar"%>
+<% else%>
+  <%= form_with(url: "/test_path/#{@ingredient.id}", method: :get) do |f| %>
+    <%= f.submit "Add this ingredient to your bar"%>
+  <% end %>
+
 <h3>Drinks that include <%= @ingredient.name %></h3>
 <ul>
   <% @recipes.each do |rec| %>

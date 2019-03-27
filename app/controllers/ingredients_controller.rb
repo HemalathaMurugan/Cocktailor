@@ -1,6 +1,6 @@
 class IngredientsController < ApplicationController
 
-  #before_action :define_current_pet
+  #before_action :define_current_ingredient
   #Create
   def new
     @errors = flash[:errors] || {}
@@ -40,6 +40,12 @@ class IngredientsController < ApplicationController
 
   #Destroy
   def destroy
+  end
+
+  def add_ingredient
+    byebug
+    UserIngredient.create(user_id: session[:current_user_id], ingredient_id: params[:id].to_i)
+    byebug
   end
 
   #strong params
