@@ -1,6 +1,13 @@
 <h2>List of Recipes: </h2>
+
+<h3>Search for a recipe:</h3>
+<%= form_tag("/recipes_search", method: "get") do %>
+  <%= text_field_tag :q, params[:q] %>
+  <%= submit_tag 'Search', name: nil %>
+<% end %>
+
 <ul>
 <% @recipes.each do |r|%>
-    <%= link_to r.name, recipe_path(r) %><br>
+    <li><%= link_to r.name, recipe_path(r) %></li>
 <% end %>
 </ul>

@@ -6,7 +6,8 @@ class Recipe < ActiveRecord::Base
   accepts_nested_attributes_for :ingredients
 
   validates :name, uniqueness: true
-  before_save :titleize_glasses, :fix_nil_in_categories
+  validates :name, presence: true
+  before_save :titleize_glasses, :fix_nil_in_categories, :titleize_names
 
   def titleize_glasses
     self.glass_type = self.glass_type.titleize
@@ -18,6 +19,10 @@ class Recipe < ActiveRecord::Base
     end
   end
 
+  def titleize_names
+    self.name = self.name.titleize
+  end
+
   def self.glasses
     glasses_groups = Recipe.all.group_by{|r| r.glass_type}
     glasses = glasses_groups.map{|k,v| v.first}.sort_by{|r| r.glass_type}
@@ -26,6 +31,10 @@ class Recipe < ActiveRecord::Base
   def self.categories
     category_groups = Recipe.all.group_by{|r| r.category}
     categories = category_groups.map{|k,v| v.first}.sort_by{|r| r.category}
+  end
+
+  def self.all_names
+    Recipe.all.map{|r| r.name.downcase}
   end
 
 end

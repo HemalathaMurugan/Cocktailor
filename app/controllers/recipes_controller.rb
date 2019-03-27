@@ -44,11 +44,29 @@ class RecipesController < ApplicationController
       @recipe.destroy
     end
 
+    def search
+      search = params.permit(:q)[:q]
+      results = []
+      Recipe.all_names.each do |rec|
+        if rec.include?(search)
+          results << Recipe.find_by(name: rec.titleize)
+          #byebug
+        end
+      end
+      #byebug
+      if results != []
+        @recipes = results
+      else
+        @recipes = Recipe.all
+      end
+      render :index
+    end
+
     private
 
-    def recipes_params(*args)
-      params.require(:recipe).permit(*args)
-    end
+      def recipes_params(*args)
+        params.require(:recipe).permit(*args)
+      end
 
 
     #
