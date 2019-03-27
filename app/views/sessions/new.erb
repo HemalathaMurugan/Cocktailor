@@ -1,11 +1,22 @@
-<%= form_with(url: '/sessions', method: :post) do |f| %>
-    <div class="form-group">
-        <%= f.label "Username" %>
-        <%= f.text_field :username %>
-    </div>
-    <div class="form-group">
-        <%= f.label "Password" %>
-        <%= f.password_field :password %>
-    </div>
-    <%= f.submit "Log in"%>
+<% if @user %>
+  <%= form_with(url: '/sessions', method: :delete) do |f| %>
+    <%= f.submit "Log out" %>
+  <% end %>
+<% else %>
+  <h2>Please enter your username and password:</h2>
+  <%= form_with(url: '/sessions', method: :post) do |f| %>
+      <div class="form-group">
+          <%= f.label "Username" %>
+          <%= f.text_field :username %>
+      </div>
+      <div class="form-group">
+          <%= f.label "Password" %>
+          <%= f.password_field :password %>
+      </div>
+      <%= f.submit "Log in"%>
+  <% end %>
+  <br>
+  <h2><%= link_to "Or please create an account with Foobartender", new_user_path %></h2>
+
+
 <% end %>
