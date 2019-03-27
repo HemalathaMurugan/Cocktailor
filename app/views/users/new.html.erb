@@ -12,8 +12,8 @@
 </head>
 <body>
 <div class="jumbotron text-center">
-  <h1>Welcome to CockTailORed!</h1>
-  <p>SignUp to create an account</p> 
+  <h1>Welcome to FooBartender!</h1>
+  <p>SignUp to create an account</p>
 </div>
 <ul>
 <%= form_for @user, url: '/users' do |f| %>
@@ -23,4 +23,3 @@
   Confirm Password: <%= f.password_field :password_confirmation %><br>
   <%= f.submit "Submit" %><br>
 <% end %>
-

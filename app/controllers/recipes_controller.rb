@@ -50,10 +50,8 @@ class RecipesController < ApplicationController
       Recipe.all_names.each do |rec|
         if rec.include?(search)
           results << Recipe.find_by(name: rec.titleize)
-          #byebug
         end
       end
-      #byebug
       if results != []
         @recipes = results
       else

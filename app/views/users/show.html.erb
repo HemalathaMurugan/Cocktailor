@@ -1,3 +1,17 @@
 <h2>User Profile:</h2>
-<p> User Name:<%= @user.username %>
-<p> First name:<%= @user.first_name%>
+<p> Username: <%= @user.username %>
+<p> First Name: <%= @user.first_name%>
+
+<h3>Your bar:</h3>
+<ul>
+  <% @ingredients.each do |ing| %>
+    <li><%= link_to ing.name, ing %></li>
+  <% end %>
+</ul>
+
+<h3>With these ingredients, you can make these cocktails:</h3>
+<ul>
+  <% @possible_recipes.each do |rec| %>
+    <li><%= link_to rec.name, rec %></li>
+  <% end %>
+</ul>

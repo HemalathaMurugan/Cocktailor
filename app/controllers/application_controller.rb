@@ -1,12 +1,9 @@
 class ApplicationController < ActionController::Base
-<<<<<<< HEAD
-    #before_action :authenticate
-=======
-before_action :authenticate
->>>>>>> new2
+
+    before_action :authenticate
 
     def authenticate
-        if(session[:current_user_id]==nil || User.find(session[:current_user_id])==nil)
+        if(session[:current_user_id]==nil || User.find_by(id: session[:current_user_id])==nil)
             redirect_to '/sessions'
         end
     end

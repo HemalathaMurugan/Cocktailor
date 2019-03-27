@@ -28,6 +28,7 @@ class IngredientsController < ApplicationController
 
   def show
     @ingredient = Ingredient.find(params[:id])
+    @user = User.find(session[:current_user_id])
     @recipes = @ingredient.recipes
   end
 
@@ -43,9 +44,11 @@ class IngredientsController < ApplicationController
   end
 
   def add_ingredient
-    byebug
-    UserIngredient.create(user_id: session[:current_user_id], ingredient_id: params[:id].to_i)
-    byebug
+    @ingredient = Ingredient.find(params[:id])
+    @user = User.find(session[:current_user_id])
+    UserIngredient.create(user: @user, ingredient: @ingredient)
+    #@recipes = @ingredient.recipes
+    redirect_to @ingredient
   end
 
   #strong params

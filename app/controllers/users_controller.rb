@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     byebug
     if @user.valid?
-     
+
         @user.save
         flash[:notice] = "You signed up successfully!"
         flash[:color] = "valid"
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
       flash[:notice] = "Try a different name"
       flash[:color] = "invalid"
       render :new
-      
+
     end
   end
 
@@ -34,6 +34,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @ingredients = @user.ingredients
+    @possible_recipes = @user.possible_recipes
   end
 
   #Update

@@ -37,4 +37,9 @@ class Recipe < ActiveRecord::Base
     Recipe.all.map{|r| r.name.downcase}
   end
 
+  def self.ingredient_lists
+    Recipe.all.map{|r| [r, r.ingredients]}
+  end
+
+
 end

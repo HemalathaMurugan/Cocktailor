@@ -3,12 +3,13 @@
 <p>Name: <%= @ingredient.name %>
 <p>Type: <%= @ingredient.ingredient_type %>
 
-<% if %>
-  <%= "This ingredient is in your bar"%>
+<% if @user.ingredients.include?(@ingredient)%>
+  <h3><%= "This ingredient is in your bar"%></h3>
 <% else%>
   <%= form_with(url: "/test_path/#{@ingredient.id}", method: :get) do |f| %>
     <%= f.submit "Add this ingredient to your bar"%>
   <% end %>
+<% end %>
 
 <h3>Drinks that include <%= @ingredient.name %></h3>
 <ul>

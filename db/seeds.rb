@@ -22,7 +22,7 @@ recipes.each do |recipe|
     end
   end
 end
-100.times do 
+100.times do
   User.create(
     username: Faker::Name.name,
     first_name: Faker::Name.first_name,
@@ -30,3 +30,7 @@ end
     password_digest: Faker::Internet.password(8)
   )
   end
+
+adam = User.create(username: "Adam1", first_name: "Adam")
+adam.password = "password"
+adam.save
