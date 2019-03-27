@@ -40,12 +40,12 @@ class UsersController < ApplicationController
   #Update
   def edit
     @user = User.find(params[:id])
-    if(flash[:user_attributes])
-      @user.assign_attributes(flash[:user_attributes])
-      @user.valid?
-    end
-    @errors = @user.errors.messages
-    @user = User.all
+    # if(flash[:user_attributes])
+    #   @user.assign_attributes(flash[:user_attributes])
+    #   @user.valid?
+    # end
+    # @errors = @user.errors.messages
+    @users = User.all
   end
 
   def update
