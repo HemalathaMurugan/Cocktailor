@@ -1,0 +1,15 @@
+<%= form_with(url: '/sessions', method: :post) do |f| %>
+    <div class="form-group">
+        <%= f.label "Username" %>
+        <%= f.text_field :username %>
+    </div>
+    <div class="form-group">
+        <%= f.label "Password" %>
+        <%= f.password_field :password %>
+    </div>
+    <div class="form-group">
+        <%= f.label "Password Confirmation" %>
+        <%= f.password_field :password_confirmation %>
+    </div>
+    <%= f.submit "Log in"%>
+<% end %>
