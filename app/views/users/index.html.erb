@@ -1,6 +1,6 @@
 <h1>List of Users:</h1>
-<p>Create a new user:
-<li><%= link_to new_user_path, class: 'btn btn-primary'%></li>
+
+<p><%= link_to "Click here to Create a new user", new_user_path, class: 'btn btn-primary'%></li>
 <ul>
     <% @users.each do |u|%>
        <li> <%= link_to u.first_name, user_path(u)%></li>

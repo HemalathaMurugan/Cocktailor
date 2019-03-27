@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-  skip_before_action :authenticate, only [:new, :create]
+  #before_action :require_login
+  #skip_before_action :require_login, only: [:index]
+  #skip_before_action :authenticate, only [:new, :create]
 
   
   #Create
@@ -14,7 +16,7 @@ class UsersController < ApplicationController
         user.save
         flash[:notice] = "You signed up successfully!"
         flash[:color] = "valid"
-        #redirect_to user
+        #redirect_to '/users'
     else
       flash[:notice] = "Try a different name"
       flash[:color] = "invalid"
@@ -29,7 +31,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(paramas[:id])
+    @user = User.find(params[:id])
   end
 
   #Update
@@ -63,6 +65,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:user_name, :password_digest, :first_name)
+    params.require(:user).permit(:user_name,:password, :password_confirmation, :password_digest, :first_name)
   end
 end

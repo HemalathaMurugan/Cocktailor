@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   post '/recipes/new', to: 'recipes#create'
   resources :users
   resources :ingredients
+  resources :sessions
   #post '/recipes/add_ingredient', 'recipes#add_ingredient'
 end
