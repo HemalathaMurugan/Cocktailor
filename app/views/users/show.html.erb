@@ -1,24 +1,67 @@
-<h2>User Profile:</h2>
-<p> Username: <%= @user.username %>
-<p> First Name: <%= @user.first_name%>
 
-<h3>Your bar:</h3>
-<ul>
-  <% @ingredients.each do |ing| %>
-    <li><%= link_to ing.name, ing %></li>
-  <% end %>
-</ul>
 
-<h3>With these ingredients, you can make these cocktails:</h3>
-<ul>
-  <% @possible_recipes.each do |rec| %>
-    <li><%= link_to rec.name, rec %></li>
-  <% end %>
-</ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>User show page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
 
-<h3>Your saved recipes:</h3>
-<ul>
-  <% @recipes.each do |rec| %>
-    <li><%= link_to rec.name, rec %></li>
-  <% end %>
-</ul>
+<body>
+
+<div class="jumbotron text-center">
+  <h2>User Profile</h2>
+  <p> Username: <%= @user.username %>
+  <p> First Name: <%= @user.first_name%>
+</div>
+
+
+
+<div class="container">
+  <div class="row">
+
+  
+
+    <div class="col-sm-4">
+
+      <h5>Ingredients</h5>
+       <p> These are the available ingredients:</p>
+       <%= link_to "Ingredients", ingredients_path %>
+          <% @ingredients.each do |ing| %>
+            <p><li><%= link_to ing.name, ing %></p>
+          <% end %>
+
+    </div>
+
+    <div class="col-sm-4">
+       <h5>Recipes</h5>
+        <p>With these ingredients, you can make these cocktails:</p>
+         <%= link_to "Recipes", recipes_path %><br>
+            <ul>
+                <% @possible_recipes.each do |rec| %>
+                 <p><li><%= link_to rec.name, rec %></li></p>
+                <% end %>
+            </ul>
+    </div>
+
+
+    <div class="col-sm-4">
+        <h5>Your saved recipes</h5>
+            <ul>
+              <% @recipes.each do |rec| %>
+                <li><%= link_to rec.name, rec %></li>
+              <% end %>
+            </ul>
+    </div>
+
+   
+  </div>
+</div>
+
+</body>
+</html>

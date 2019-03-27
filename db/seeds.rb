@@ -34,3 +34,7 @@ end
 adam = User.create(username: "Adam1", first_name: "Adam")
 adam.password = "password"
 adam.save
+
+hema = User.create(username: "Hema", first_name: "Hema")
+hema.password = "password"
+hema.save
