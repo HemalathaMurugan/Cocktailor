@@ -1,0 +1,12 @@
+<div class="jumbotron text-center">
+  <h1>Welcome to FooBartender!</h1>
+  <p>SignUp to create an account</p>
+</div>
+
+<%= form_with model: @user do |f| %>
+  Username: <%= f.text_field :username %><br>
+  Firstname: <%= f.text_field :first_name %><br>
+  Password: <%= f.password_field :password %><br>
+  Confirm Password: <%= f.password_field :password_confirmation %><br>
+  <%= f.submit "Submit" %><br>
+<% end %>
