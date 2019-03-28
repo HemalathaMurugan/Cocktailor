@@ -14,12 +14,12 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.valid?
         @user.save
-        flash[:notice] = "You signed up successfully!"
-        flash[:color] = "valid"
-        redirect_to @user
+        flash[:success] = "You signed up successfully!"
+        
+        redirect_to user_path(@user)
     else
-      flash[:notice] = "Try a different name"
-      flash[:color] = "invalid"
+      flash[:danger] = "Invalid username or password! Try again."
+      
       render :new
 
     end
