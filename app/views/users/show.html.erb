@@ -1,4 +1,4 @@
-
+ 
 
 
 <body>
@@ -17,29 +17,37 @@
 
     <div class="col-sm-4">
 
-      <h5>Ingredients</h5>
-       <p> These are the available ingredients:</p>
-       <%= link_to "Ingredients", ingredients_path %>
+      <h5>Ingredients </h5>
+       
+       <ul>
+            <%= link_to "Click here for all our ingredients", ingredients_path %><br>
+       </ul>
+       <p>
+       <h6>Ingredients in your bar:</h6>
           <% @ingredients.each do |ing| %>
-            <p><li><%= link_to ing.name, ing %></p>
+            
+            <li><%= link_to ing.name, ing %></p>
           <% end %>
-
+        </p>
+        
     </div>
 
     <div class="col-sm-4">
-       <h5>Recipes</h5>
-        <p>With these ingredients, you can make these cocktails:</p>
-         <%= link_to "Recipes", recipes_path %><br>
-            <ul>
-                <% @possible_recipes.each do |rec| %>
-                 <p><li><%= link_to rec.name, rec %></li></p>
-                <% end %>
-            </ul>
+       <h5>Recipes </h5>
+       <ul>
+            <%= link_to "Click here for all our recipes", recipes_path %><br>
+       </ul>
+          <h6>Possible cocktails with ingredients from your bar:</h6>
+          
+          <% @possible_recipes.each do |rec| %>
+                <p><li><%= link_to rec.name, rec %></li></p>
+          <% end %>
+        </ul>
     </div>
 
 
     <div class="col-sm-4">
-        <h5>Your saved recipes</h5>
+        <h5>History of recipes you saved:</h5>
             <ul>
               <% @recipes.each do |rec| %>
                 <li><%= link_to rec.name, rec %></li>
@@ -52,3 +60,4 @@
 </div>
 
 </body>
+
