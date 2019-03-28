@@ -41,5 +41,15 @@ class Recipe < ActiveRecord::Base
     Recipe.all.map{|r| [r, r.ingredients]}
   end
 
+  def user_count
+    user_count = 0
+    ur_s = UserRecipe.all
+    ur_s.each do |ur|
+      if ur.recipe_id == self.id
+        user_count +=1
+      end
+    end
+    user_count
+  end
 
 end

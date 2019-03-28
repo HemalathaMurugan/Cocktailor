@@ -48,6 +48,7 @@ class IngredientsController < ApplicationController
     redirect_to @ingredient
   end
 
+ 
   private
 
     #strong params

@@ -36,4 +36,14 @@
       <%= link_to rec.name, recipe_path(rec) %>
     </li>
   <% end %>
-</ul>
+</ul><br>
+
+<h3>How famous is this drink</h3>
+  <ul>
+  <%= "No of recipes having this ingredient: "%>
+  <%=  @ingredient.recipe_count %>
+  </ul>
+  
+
+
+

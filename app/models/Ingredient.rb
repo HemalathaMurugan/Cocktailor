@@ -6,6 +6,18 @@ class Ingredient < ActiveRecord::Base
 
   validates :name, uniqueness: true
 
+  def recipe_count
+    recipe_count = 0
+    
+    ri_s = RecipeIngredient.all
+    ri_s.each do |ri|
+      if ri.ingredient_id == self.id
+        recipe_count += 1
+      end
+    end
+    recipe_count
+  end
+
 
   # def amount(recipe: recipe)
   #   byebug

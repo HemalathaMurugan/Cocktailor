@@ -36,3 +36,11 @@
 <% end %>
 
 <%= link_to "Edit this recipe", edit_recipe_path(@recipe) %>
+
+
+<h3>How famous is this recipe</h3>
+  <ul>
+  <%= "No of users who saved this recipe: "%>
+  <%=  @recipe.user_count %>
+  </ul>
+  
