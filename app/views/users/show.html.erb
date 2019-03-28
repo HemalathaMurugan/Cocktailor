@@ -63,9 +63,11 @@
 
   </div>
 </div>
-<%= link_to "Edit your account details", edit_user_path(@user) %>
-<%= form_tag "/users/#{@user.id}", method: "delete" do %>
-  <%= submit_tag "Delete your account" %>
+<% if @self == true %>
+  <%= link_to "Edit your account details", edit_user_path(@user) %>
+  <%= form_tag "/users/#{@user.id}", method: "delete" do %>
+    <%= submit_tag "Delete your account" %>
+  <% end %>
 <% end %>
 
 </body>

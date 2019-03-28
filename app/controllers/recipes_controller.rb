@@ -59,14 +59,18 @@ class RecipesController < ApplicationController
       recipes_params(recipe_ingredient: {})["recipe_ingredient"].each do |i_a|
         if i_a[1]["ingredient_name"] != ''
           @ing = Ingredient.find_or_create_by(name: i_a[1]["ingredient_name"])
-          if i_a[1]["amount"] != ""
+          if i_a[1]["amount"] != "0"
             @ing.ingredient_type = "Main ingredient"
           else
             @ing.ingredient_type = "Special ingredient"
           end
           @ing.save
           @r_c = RecipeIngredient.find_or_create_by(recipe: @recipe, ingredient: @ing)
-          @r_c.update(amount: i_a[1]["amount"])
+          if i_a[1]["amount"] != ""
+            @r_c.update(amount: i_a[1]["amount"])
+          else
+            @r_c.destroy
+          end
         end
       end
       # recipes_params(ingredients_attributes: [:name, :amount])["ingredients_attributes"].each do |i_a|

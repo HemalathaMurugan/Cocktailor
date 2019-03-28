@@ -12,8 +12,8 @@
     <p>
       If you consider an ingredient a main ingredient, enter its amount in centiliters. 3 centiliters is equivalent to 1 ounce.
       Examples of main ingredients are Rum, Whiskey, Vermouth, and Lemon Juice.
-      If your ingredient is not a main ingredient, leave amount blank and describe the amount in the name.
-      For example, "2 dashes of bitters" or "2 fresh mint leaves" or "Salt".
+      If your ingredient is not a main ingredient, enter "0" for amount, and describe the amount in the name.
+      For example, "2 dashes of bitters" or "2 fresh mint leaves" or "Salt". To remove an ingredient, set its amount to blank.
     </p>
     <ul>
 
@@ -23,9 +23,6 @@
           <%= ingredient_form.text_field :ingredient_name, list: "ingredient_autocomplete", value: recipe_ingredient.ingredient_name %>
           <%= ingredient_form.label :amount %>
           <%= ingredient_form.text_field :amount, value: recipe_ingredient.amount %>
-          <%= form_tag "/recipe_ingredients/#{recipe_ingredient.id}", method: "delete" do %>
-            <%= submit_tag "Remove this ingredient" %>
-          <% end %>
         <% end %>
       </li>
       <% end %>
