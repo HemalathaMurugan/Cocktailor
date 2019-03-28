@@ -3,7 +3,7 @@
 <style>
             body  {
               background-image: url(https://j.gifs.com/W7Krz4.gif);
-              
+
             }
 </style>
 </head>
@@ -21,32 +21,29 @@
 <div class="container">
   <div class="row">
 
-  
+
 
     <div class="col-sm-4">
 
       <h5>Ingredients </h5>
-       
+
        <ul>
             <%= link_to "Click here for all our ingredients", ingredients_path %><br>
        </ul>
-       <p>
        <h6>Ingredients in your bar:</h6>
           <% @ingredients.each do |ing| %>
-            
-            <li><%= link_to ing.name, ing %></p>
+
+            <li><%= link_to ing.name, ing %>
           <% end %>
-        </p>
-        
+
     </div>
 
     <div class="col-sm-4">
        <h5>Recipes </h5>
        <ul>
             <%= link_to "Click here for all our recipes", recipes_path %><br>
-       </ul>
           <h6>Possible cocktails with ingredients from your bar:</h6>
-          
+
           <% @possible_recipes.each do |rec| %>
                 <p><li><%= link_to rec.name, rec %></li></p>
           <% end %>
@@ -63,9 +60,13 @@
             </ul>
     </div>
 
-   
+
   </div>
 </div>
+<%= link_to "Edit your account details", edit_user_path(@user) %>
+<%= form_tag "/users/#{@user.id}", method: "delete" do %>
+  <%= submit_tag "Delete your account" %>
+<% end %>
 
 </body>
 </html>

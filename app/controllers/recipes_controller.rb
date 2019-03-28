@@ -65,7 +65,8 @@ class RecipesController < ApplicationController
             @ing.ingredient_type = "Special ingredient"
           end
           @ing.save
-          @r_c = RecipeIngredient.find_or_create_by(recipe: @recipe, ingredient: @ing, amount: i_a[1]["amount"])
+          @r_c = RecipeIngredient.find_or_create_by(recipe: @recipe, ingredient: @ing)
+          @r_c.update(amount: i_a[1]["amount"])
         end
       end
       # recipes_params(ingredients_attributes: [:name, :amount])["ingredients_attributes"].each do |i_a|
@@ -74,6 +75,7 @@ class RecipesController < ApplicationController
       #     @r_c = RecipeIngredient.find_or_create_by(recipe: @recipe, ingredient: @ing, amount: i_a[1]["amount"])
       #   end
       # end
+      @recipe.save
       redirect_to @recipe
       #recipes_params(recipe_ingredients: {})["recipe_ingredients"]["ingredient_name"]
     end

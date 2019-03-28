@@ -1,4 +1,4 @@
-<h2>Edit a Recipe:</h2>
+<h2>Make a New Drink:</h2>
 
 <%= form_with model: @recipe do |f|%>
     <label>Drink Name:</label>
@@ -38,6 +38,6 @@
     <label>Choose the Category:</label>
     <%= f.collection_select :category, @categories, :category, :category %><br><br>
 
-    <%= f.submit "Edit"%>
+    <%= f.submit "Submit recipe"%>
 
 <% end %>

@@ -62,9 +62,9 @@ class UsersController < ApplicationController
 
   #Destroy
   def destroy
-    # @user = User.find(params[:id])
-    # @user.destroy
-    # redirect_to '/users'
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to '/sessions/new'
   end
 
 
