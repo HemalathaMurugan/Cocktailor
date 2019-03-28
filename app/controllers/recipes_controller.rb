@@ -3,18 +3,31 @@ class RecipesController < ApplicationController
     #Create
     def new
       @recipe = Recipe.new
-      6.times { @recipe.ingredients.build }
+      6.times { @recipe.recipe_ingredients.build }
       @glasses = Recipe.glasses
       @categories = Recipe.categories
       @ingredients = Ingredient.all
     end
 
     def create
-      byebug
       @recipe = Recipe.new(recipes_params(:name, :description, :instructions, :glass_type, :category))
-      recipes_params(ingredients_attributes: [:name, :amount])["ingredients_attributes"].each do |i_a|
-        @ing = Ingredient.find_or_create_by(name: i_a[1]["name"])
-        @r_c = RecipeIngredient.create(recipe: @recipe, ingredient: @ing, amount: i_a[1]["amount"])
+      # recipes_params(ingredients_attributes: [:name, :amount])["ingredients_attributes"].each do |i_a|
+      #   if i_a[1]["name"] != ''
+      #     @ing = Ingredient.find_or_create_by(name: i_a[1]["name"])
+      #     @r_c = RecipeIngredient.find_or_create_by(recipe: @recipe, ingredient: @ing, amount: i_a[1]["amount"])
+      #   end
+      # end
+      recipes_params(recipe_ingredient: {})["recipe_ingredient"].each do |i_a|
+        if i_a[1]["ingredient_name"] != ''
+          @ing = Ingredient.find_or_create_by(name: i_a[1]["ingredient_name"])
+          if i_a[1]["amount"] != ""
+            @ing.ingredient_type = "Main ingredient"
+          else
+            @ing.ingredient_type = "Special ingredient"
+          end
+          @ing.save
+          @r_c = RecipeIngredient.find_or_create_by(recipe: @recipe, ingredient: @ing, amount: i_a[1]["amount"])
+        end
       end
       redirect_to @recipe
     end
@@ -34,9 +47,35 @@ class RecipesController < ApplicationController
       @recipe = Recipe.find(params[:id])
       @glasses = Recipe.glasses
       @categories = Recipe.categories
+      @ingredients = Ingredient.all
+      @recipe.recipe_ingredients.build
     end
 
     def update
+      #byebug
+      @recipe = Recipe.find(params[:id])
+      @recipe.assign_attributes(recipes_params(:name, :description, :instructions, :glass_type, :category))
+
+      recipes_params(recipe_ingredient: {})["recipe_ingredient"].each do |i_a|
+        if i_a[1]["ingredient_name"] != ''
+          @ing = Ingredient.find_or_create_by(name: i_a[1]["ingredient_name"])
+          if i_a[1]["amount"] != ""
+            @ing.ingredient_type = "Main ingredient"
+          else
+            @ing.ingredient_type = "Special ingredient"
+          end
+          @ing.save
+          @r_c = RecipeIngredient.find_or_create_by(recipe: @recipe, ingredient: @ing, amount: i_a[1]["amount"])
+        end
+      end
+      # recipes_params(ingredients_attributes: [:name, :amount])["ingredients_attributes"].each do |i_a|
+      #   if i_a[1]["name"] != ''
+      #     @ing = Ingredient.find_or_create_by(name: i_a[1]["name"])
+      #     @r_c = RecipeIngredient.find_or_create_by(recipe: @recipe, ingredient: @ing, amount: i_a[1]["amount"])
+      #   end
+      # end
+      redirect_to @recipe
+      #recipes_params(recipe_ingredients: {})["recipe_ingredients"]["ingredient_name"]
     end
 
     #Destroy
