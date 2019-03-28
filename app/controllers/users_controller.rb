@@ -31,10 +31,12 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user == User.find(params[:id]) ? @self = true : @self = false
     @user = User.find(params[:id])
     @ingredients = @user.ingredients
     @possible_recipes = @user.possible_recipes
     @recipes = @user.recipes
+
   end
 
   #Update
@@ -50,7 +52,7 @@ class UsersController < ApplicationController
 
   def update
     user = User.find(params[:id])
-    user.assign_attributes(user_params[:user])
+    user.assign_attributes(user_params)
     if user.valid?
       user.save
     else
