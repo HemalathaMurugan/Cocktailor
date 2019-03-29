@@ -46,6 +46,11 @@
   <% end %>
 <% end %>
 
+
+<%= form_with(url: "/add_all_ingredients/#{@recipe.id}", method: :post) do |f| %>
+  <%= f.submit "Add all ingredients in this recipe to your bar"%>
+<% end %>
+
 <%= link_to "Edit this recipe", edit_recipe_path(@recipe) %>
 
 
@@ -54,6 +59,7 @@
   <%= "No of users who saved this recipe: "%>
   <%=  @recipe.user_count %>
   </ul>
+<<<<<<< HEAD
 
 
 <h3>Rate this recipe</h3>
@@ -63,3 +69,5 @@
     <%= f.number_field :rating, :class => 'text_field', :step => 0.5%>
     <%= f.submit "Rate" %>
   <% end %>
+=======
+>>>>>>> 889c75b57139de7491e2f67d88dbc5e68a033623

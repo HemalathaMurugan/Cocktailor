@@ -48,5 +48,36 @@ class Recipe < ActiveRecord::Base
     user_count
   end
 
+<<<<<<< HEAD
   
+=======
+  def self.all_names
+    Recipe.all.map{|r| [r, r.name.downcase]}
+  end
+
+  def self.search(search_term)
+    results = []
+    Recipe.all_names.each do |rec|
+      if rec[1].include?(search_term)
+        results << rec[0]
+      end
+    end
+    results != [] ? recipes = results : recipes = Recipe.all
+    return recipes
+  end
+
+  def self.popularity
+    Recipe.all.sort_by{|r| r.users.size}.reverse
+  end
+
+  def add_ingredients(user)
+    byebug
+    self.ingredients.each do |ing|
+      if ing.ingredient_type == "Main ingredient"
+        UserIngredient.find_or_create_by(user: user, ingredient: ing)
+      end
+    end
+  end
+
+>>>>>>> 889c75b57139de7491e2f67d88dbc5e68a033623
 end

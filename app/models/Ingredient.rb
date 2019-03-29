@@ -53,17 +53,4 @@ class Ingredient < ActiveRecord::Base
     Ingredient.all.sort_by{|r| r.recipes.size}.reverse
   end
 
-  # def amount(recipe: recipe)
-  #   byebug
-  #   if self.recipe_ingredients.first
-  #     rec_ing = self.recipe_ingredients.select {|r_i| r_i.recipe == recipe}
-  #     rec_ing.amount
-  #   end
-  # end
-  #  I think these are obsolete...
-  # def amount=(recipe: recipe, amount: amount)
-  #   byebug
-  #   rec_ing = self.recipe_ingredients.select {|r_i| r_i.recipe == recipe}
-  #   rec_ing.amount = amount
-  # end
 end
