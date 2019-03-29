@@ -15,7 +15,7 @@
   <div class="row">
 
     <div class="col-sm-6">
-    
+
               <h4>
                     <style>
                         body {
@@ -74,14 +74,14 @@
         <div class="col-sm-6">
               <div class="p-3 mb-2 bg-dark text-white">
               <h6>How famous is this recipe: <%=  @recipe.user_count %> Users saved this recipe!</h6>
-              
+
               </div>
-              
+
               <div class="p-3 mb-2 bg-dark text-white">
                 <%= form_with(url: "/rate_this_recipe/#{@recipe.id}", method: :post) do |f|%>
                     <h6>Rate this recipe(1 to 5)</h6><%= f.number_field :rating, :class => 'text_field', :step => 0.5%>
                   <%= f.submit "Rate" %>
-                  
+
               <% if flash[:alert] %>
                   <div class="alert"><%= flash[:alert][0] %></div>
                 <% end %>

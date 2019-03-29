@@ -1,5 +1,3 @@
-<h2>Create a New Recipe:</h2>
-
 <%= form_with model: @recipe do |f|%>
     <label>Drink Name:</label>
     <%= f.text_field :name %><br>
@@ -9,26 +7,29 @@
     <%= f.text_area :description %><br>
     <br><br>
     <label>Ingredients:</label>
-    <p>If you consider an ingredient a main ingredient, enter its amount in centiliters. 3 centiliters is equivalent to 1 ounce. Examples of main ingredients are Rum, Whiskey, Vermouth, and Lemon Juice. If your ingredient is not a main ingredient, leave amount blank and describe the amount in the name. For example, "2 dashes of bitters" or "2 fresh mint leaves" or "Salt".</p>
+    <p>
+      If you consider an ingredient a main ingredient, enter its amount in centiliters. 3 centiliters is equivalent to 1 ounce.
+      Examples of main ingredients are Rum, Whiskey, Vermouth, and Lemon Juice.
+      If your ingredient is not a main ingredient, enter "0" for amount, and describe the amount in the name.
+      For example, "2 dashes of bitters" or "2 fresh mint leaves" or "Salt". To remove an ingredient, set its amount to blank.
+    </p>
     <ul>
-      <%= f.fields_for :ingredients do |ingredient| %>
-      <li>
-        <%= ingredient.label :name %>
-        <% if @recipe.ingredients[0].id == nil || (ingredient.text_field :name).split('=')[2][1..6] == "recipe" %>
-          <%= ingredient.text_field :name, list: "ingredient_autocomplete", value: '' %>
-        <% else %>
-          <%= ingredient.text_field :name, list: "ingredient_autocomplete", value: (ingredient.text_field :name).split('=')[2][1..-7] %>
+
+      <% @recipe.recipe_ingredients.each_with_index do |recipe_ingredient, index| %>
+        <%= f.fields_for recipe_ingredient, index: index do |ingredient_form| %>
+          <li><%= ingredient_form.label :ingredient_name %>
+          <%= ingredient_form.text_field :ingredient_name, list: "ingredient_autocomplete", value: recipe_ingredient.ingredient_name %>
+          <%= ingredient_form.label :amount %>
+          <%= ingredient_form.text_field :amount, value: recipe_ingredient.amount %>
         <% end %>
-        <% byebug %>
-        <%= ingredient.label :amount %>
-        <%= ingredient.text_field :amount %>
-          <datalist id="ingredient_autocomplete">
-          <% @ingredients.each do |ingredient|%>
-           <option value="<%=ingredient.name%>">
-          <%end%>
-      </li>
+        </li>
       <% end %>
-    </ul>
+
+      <datalist id="ingredient_autocomplete">
+        <% @ingredients.each do |ing|%>
+         <option value="<%=ing.name%>"></option>
+        <% end %>
+      </ul>
 
     <label>Instructions:</label>
     <%= f.text_area :instructions%><br><br>
@@ -39,6 +40,6 @@
     <label>Choose the Category:</label>
     <%= f.collection_select :category, @categories, :category, :category %><br><br>
 
-    <%= f.submit "Create Recipe"%>
+    <%= f.submit "Submit recipe"%>
 
 <% end %>

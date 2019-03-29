@@ -10,8 +10,8 @@ class Recipe < ActiveRecord::Base
   before_save :titleize_glasses, :fix_nil_in_categories, :titleize_names
 
   def check_rating
-    if self.rating <=5 && self.rating >=1
-    elsif self.rating == nil
+    if self.rating == nil
+    elsif self.rating <=5 && self.rating >=1
     else
       errors.add(:rating, "Rating must be a number between 1 and 5.")
     end
@@ -77,7 +77,6 @@ class Recipe < ActiveRecord::Base
   end
 
   def add_ingredients(user)
-    byebug
     self.ingredients.each do |ing|
       if ing.ingredient_type == "Main ingredient"
         UserIngredient.find_or_create_by(user: user, ingredient: ing)
