@@ -16,13 +16,24 @@
     <%= link_to "Ingredients", ingredients_path%>
   </header>
 
+  <style>
+
+    .login_background{
+        width:15%;
+        height:absolute;
+        background-color:rgba(0,0,0,1);
+        text-align:left;
+        color:white;
+      }
+  </style>
+
   <body>
   <% if notice %>
         <p class="notice"><%= notice %></p>
     <% elsif alert %>
-        <p class="alert"><%= alert %></p> 
+        <p class="alert"><%= alert %></p>
     <% end %>
-    
+
     <%= yield %>
   </body>
 <!--
