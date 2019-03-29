@@ -9,66 +9,83 @@
 </head>
 
 <body>
-<h2>Recipe Page:</h2>
-<label>Name:</label>
-<%= @recipe.name %><br>
-
-<label>Description: </label>
-<%= @recipe.description %><br>
-
-<label>Glass Type:</label>
-<%=@recipe.glass_type%><br>
-
-<label>Category: </label>
-<%= @recipe.category %><br>
-
-<h3>Ingredients:</h3>
-<ul>
-<% @ingredients.each do |ing| %>
-  <li>
-    <% if ing.ingredient_type == "Main ingredient" %>
-      <%= ing.recipe_ingredients.select{|r_i| r_i.recipe == @recipe}.first.amount %> cls of <%= link_to ing.name, ingredient_path(ing) %>
-    <% else %>
-      <%= ing.name %>
-    <% end %>
-  </li>
-<% end %>
-</ul>
-
-<h4>Preparation:</h4>
-<%= @recipe.instructions %>
-<br><br>
-<% if @user.recipes.include?(@recipe)%>
-  <h3><%= "You've saved this recipe"%></h3>
-<% else%>
-  <%= form_with(url: "/add_recipe/#{@recipe.id}", method: :post) do |f| %>
-    <%= f.submit "Save this recipe"%>
-  <% end %>
-<% end %>
 
 
-<%= form_with(url: "/add_all_ingredients/#{@recipe.id}", method: :post) do |f| %>
-  <%= f.submit "Add all ingredients in this recipe to your bar"%>
-<% end %>
+<div class="container">
+  <div class="row">
 
-<%= link_to "Edit this recipe", edit_recipe_path(@recipe) %>
-
-
-<h3>How famous is this recipe</h3>
-  <ul>
-  <%= "No of users who saved this recipe: "%>
-  <%=  @recipe.user_count %>
-  </ul>
-
-<h3>Rate this recipe</h3>
-<ul>
-  <p>Enter your rating on a scale of 1 to 5</p>
-  <%= form_with(url: "/rate_this_recipe/#{@recipe.id}", method: :post) do |f|%>
-    <%= f.number_field :rating, :class => 'text_field', :step => 0.5%>
-    <%= f.submit "Rate" %>
+    <div class="col-sm-6">
     
-<% if flash[:alert] %>
-    <div class="alert"><%= flash[:alert][0] %></div>
-  <% end %>
+              <h4>
+                    <style>
+                        body {
+                        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                        font-size: 14px;
+                        line-height: 20px;
+                        color: #99e6ff;    // Changed
+                        }
+                    </style>
+                    Cocktail Professor's Recipe: <%= @recipe.name %>
+               </h4>
+              <label>Name:</label>
+              <%= @recipe.name %><br>
 
-  <% end %>
+              <label>Description: </label>
+              <%= @recipe.description %><br>
+
+              <label>Glass Type:</label>
+              <%=@recipe.glass_type%><br>
+
+              <label>Category: </label>
+              <%= @recipe.category %><br>
+
+              <h6>Ingredients:</h6>
+              <ul>
+              <% @ingredients.each do |ing| %>
+                <li>
+                  <% if ing.ingredient_type == "Main ingredient" %>
+                    <%= ing.recipe_ingredients.select{|r_i| r_i.recipe == @recipe}.first.amount %> cls of <%= link_to ing.name, ingredient_path(ing) %>
+                  <% else %>
+                    <%= ing.name %>
+                  <% end %>
+                </li>
+              <% end %>
+              </ul>
+
+              <h6>Preparation:</h6>
+              <%= @recipe.instructions %>
+              <br><br>
+              <% if @user.recipes.include?(@recipe)%>
+                <h3><%= "You've saved this recipe"%></h3>
+              <% else%>
+                <%= form_with(url: "/add_recipe/#{@recipe.id}", method: :post) do |f| %>
+                  <%= f.submit "Save this recipe"%>
+                <% end %>
+              <% end %>
+
+
+              <%= form_with(url: "/add_all_ingredients/#{@recipe.id}", method: :post) do |f| %>
+                <%= f.submit "Add all ingredients in this recipe to your bar"%>
+              <% end %>
+
+              <%= link_to "Edit this recipe", edit_recipe_path(@recipe) %>
+        </div>
+
+        <div class="col-sm-6">
+              <div class="p-3 mb-2 bg-dark text-white">
+              <h6>How famous is this recipe: <%=  @recipe.user_count %> Users saved this recipe!</h6>
+              
+              </div>
+              
+              <div class="p-3 mb-2 bg-dark text-white">
+                <%= form_with(url: "/rate_this_recipe/#{@recipe.id}", method: :post) do |f|%>
+                    <h6>Rate this recipe(1 to 5)</h6><%= f.number_field :rating, :class => 'text_field', :step => 0.5%>
+                  <%= f.submit "Rate" %>
+                  
+              <% if flash[:alert] %>
+                  <div class="alert"><%= flash[:alert][0] %></div>
+                <% end %>
+
+                <% end %>
+              </div>
+          </div>
