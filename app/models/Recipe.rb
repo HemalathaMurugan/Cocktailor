@@ -3,7 +3,6 @@ class Recipe < ActiveRecord::Base
   has_many :ingredients, through: :recipe_ingredients
   has_many :user_recipes
   has_many :users, through: :user_recipes
-  accepts_nested_attributes_for :ingredients
 
   validates :name, uniqueness: true
   validates :name, presence: true
@@ -73,6 +72,26 @@ class Recipe < ActiveRecord::Base
     self.ingredients.each do |ing|
       if ing.ingredient_type == "Main ingredient"
         UserIngredient.find_or_create_by(user: user, ingredient: ing)
+      end
+    end
+  end
+
+  def set_recipe_ingredients(params)
+    params.each do |i_a|
+      if i_a[1]["ingredient_name"] != ''
+        @ing = Ingredient.find_or_create_by(name: i_a[1]["ingredient_name"])
+        if i_a[1]["amount"] != "0"
+          @ing.ingredient_type = "Main ingredient"
+        else
+          @ing.ingredient_type = "Special ingredient"
+        end
+        @ing.save
+        @r_c = RecipeIngredient.find_or_create_by(recipe: self, ingredient: @ing)
+        if i_a[1]["amount"] != ""
+          @r_c.update(amount: i_a[1]["amount"])
+        else
+          @r_c.destroy
+        end
       end
     end
   end
