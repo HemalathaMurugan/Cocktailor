@@ -11,7 +11,15 @@
 <body>
 
   <div class="jumbotron text-center">
-      <div class="center_background">
+      <!--<div class="center_background">-->
+      <style>
+            body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 20px;
+            line-height: 20px;
+            color: #4da6ff;    // Changed
+            }
+      </style>
           <h3>Recipe List</h3>
 
           <p><%= link_to "Click here to create new Recipe", new_recipe_path%></p>

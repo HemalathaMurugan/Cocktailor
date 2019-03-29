@@ -2,7 +2,7 @@
 <head>
 <style>
             body  {
-              background-image: url(https://j.gifs.com/W7Krz4.gif);
+              background-image: url(https://1eican1u2cuw7g1kw7btt2xy-wpengine.netdna-ssl.com/wp-content/uploads/buenos-aires-bars-bar-top-best.gif);
 
             }
 </style>
@@ -10,8 +10,38 @@
 
 <body>
 
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <!--<a class="navbar-brand" href="#">WebSiteName</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">Page 1</a></li>
+      <li><a href="#">Page 2</a></li>-->
+      <ul class="nav navbar-nav">
+      <% if @self == true %>
+            <%= link_to "Edit your account details", edit_user_path(@user) %>
+            <%= form_tag "/users/#{@user.id}", method: "delete" do %>
+                <%= submit_tag "Delete your account" %>
+            <% end %>
+      <% end %>
+      
+    </ul>
+  </div>
+</nav>
+
 <div class="jumbotron text-center">
-  <div class="center_background">
+  <!--<div class="center_background">-->
+  <style>
+    body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    line-height: 20px;
+    color: #99e6ff;    // Changed
+    }
+  </style>
   <h2>User Profile</h2>
   <p> Username: <%= @user.username %>
   <p> First Name: <%= @user.first_name%>
@@ -27,6 +57,14 @@
 
     <div class="col-sm-4">
       <div class="left_background">
+      <style>
+            body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 20px;
+            line-height: 20px;
+            color: #99e6ff;    // Changed
+            }
+      </style>
       <h5>Ingredients </h5>
 
        <ul>
@@ -42,6 +80,14 @@
 
     <div class="col-sm-4">
       <div class="center_background">
+      <style>
+            body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 30px;
+            line-height: 20px;
+            color: #00000;    // Changed
+            }
+      </style>
        <h5>Recipes </h5>
        <ul>
             <%= link_to "Click here for all our recipes", recipes_path %><br>
@@ -57,6 +103,14 @@
 
     <div class="col-sm-4">
       <div class="right_background">
+      <style>
+            body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 20px;
+            line-height: 20px;
+            color: #99e6ff;    // Changed
+            }
+      </style>
         <h5>History of recipes you saved:</h5>
             <ul>
               <% @recipes.each do |rec| %>
@@ -70,15 +124,10 @@
   </div>
 </div>
 <br>
-<br>
-<div class="center_background">
-<% if @self == true %>
-  <%= link_to "Edit your account details", edit_user_path(@user) %>
-  <%= form_tag "/users/#{@user.id}", method: "delete" do %>
-    <%= submit_tag "Delete your account" %>
-  <% end %>
-<% end %>
-</div>
+
+
+
+
 
 </body>
 </html>
