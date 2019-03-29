@@ -96,6 +96,10 @@ class RecipesController < ApplicationController
       render :index
     end
 
+    def rate_this_recipe
+      @recipe = Recipe.find(params[:id])
+      @recipe.update(rating: params)
+    end
 
     def add_recipe
       @recipe = Recipe.find(params[:id])

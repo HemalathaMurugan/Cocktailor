@@ -1,8 +1,9 @@
 <head>
 <style>
-            body  {
-              background-image: url(https://img.taste.com.au/7-t_jkYd/taste/2017/12/swp0080_recipe-integration-1980x1320px-b_v2-133202-1.jpg);
-            }
+        body  
+        {
+        background-image: url(https://img.taste.com.au/7-t_jkYd/taste/2017/12/swp0080_recipe-integration-1980x1320px-b_v2-133202-1.jpg);
+        }
 </style>
 </head>
 <div class="jumbotron text-center">
@@ -20,19 +21,17 @@
 <div class="container">
   <div class="row">
 
-        <div class="col-sm-5">
-
-
-            <h4>Main Ingredients</h4>
+        <div class="col-sm-8.5">
+            <h3>Main Ingredients</h3>
             <ul>
             <% @main_ingredients.each do |i|%>
                 <li><%= link_to i.name, i %></li>
             <% end %>
             </ul>
         </div>
-
-        <div class="col-sm-5">
-            <h4>Special Ingredients</h4>
+        
+        <div class="col-sm-8.5">
+            <h3><%="    Special Ingredients"%></h3>
             <ul>
             <% @special_ingredients.each do |i|%>
                 <li><%= link_to i.name, i %></li>
