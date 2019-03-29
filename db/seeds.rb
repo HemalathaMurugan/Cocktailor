@@ -27,7 +27,7 @@ recipes.each do |recipe|
     end
   end
 end
-100.times do
+25.times do
   User.create(
     username: Faker::Name.name,
     first_name: Faker::Name.first_name,
@@ -43,3 +43,14 @@ adam.save
 hema = User.create(username: "Hema", first_name: "Hema")
 hema.password = "password"
 hema.save
+
+User.all.each do |user|
+  rand(5).times do
+    ing = Ingredient.all.sample
+    UserIngredient.find_or_create_by(user: user, ingredient: ing)
+  end
+  rand(5).times do
+    rec = Recipe.all.sample
+    UserRecipe.find_or_create_by(user: user, recipe: rec)
+  end
+end

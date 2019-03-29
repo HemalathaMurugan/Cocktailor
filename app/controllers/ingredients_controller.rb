@@ -21,7 +21,6 @@ class IngredientsController < ApplicationController
 
   #Read
   def index
-    Recipe.popularity
     @main_ingredients = Ingredient.main_ingredients
     @special_ingredients = Ingredient.special_ingredients
 

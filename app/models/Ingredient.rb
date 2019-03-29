@@ -12,6 +12,7 @@ class Ingredient < ActiveRecord::Base
 
   def amount=(amt)
     self.recipe_ingredient.amount = amt
+  end
 
   def self.main_ingredients
     Ingredient.all.select{|i| i.ingredient_type == "Main ingredient"}
