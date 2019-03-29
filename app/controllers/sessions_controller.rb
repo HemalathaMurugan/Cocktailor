@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-    skip_before_action :authenticate, only: [:new, :create, :destroy]
+    skip_before_action :authenticate, only: [:new, :create, :destroy, :landing]
 
 
     def new
@@ -18,5 +18,9 @@ class SessionsController < ApplicationController
     def destroy
         reset_session
         redirect_to '/sessions/new'
+    end
+
+    def landing
+      render :landing
     end
 end

@@ -103,6 +103,12 @@ class RecipesController < ApplicationController
       redirect_to @recipe
     end
 
+    def add_ingredients
+      @recipe = Recipe.find(params[:id])
+      @recipe.add_ingredients(@user)
+      redirect_to @user
+    end
+
     private
 
       def recipes_params(*args)

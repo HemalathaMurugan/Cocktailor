@@ -67,4 +67,13 @@ class Recipe < ActiveRecord::Base
     Recipe.all.sort_by{|r| r.users.size}.reverse
   end
 
+  def add_ingredients(user)
+    byebug
+    self.ingredients.each do |ing|
+      if ing.ingredient_type == "Main ingredient"
+        UserIngredient.find_or_create_by(user: user, ingredient: ing)
+      end
+    end
+  end
+
 end

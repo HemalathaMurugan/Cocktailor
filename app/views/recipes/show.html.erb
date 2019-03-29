@@ -35,6 +35,11 @@
   <% end %>
 <% end %>
 
+
+<%= form_with(url: "/add_all_ingredients/#{@recipe.id}", method: :post) do |f| %>
+  <%= f.submit "Add all ingredients in this recipe to your bar"%>
+<% end %>
+
 <%= link_to "Edit this recipe", edit_recipe_path(@recipe) %>
 
 
@@ -43,4 +48,3 @@
   <%= "No of users who saved this recipe: "%>
   <%=  @recipe.user_count %>
   </ul>
-  
