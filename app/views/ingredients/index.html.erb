@@ -1,17 +1,20 @@
 <head>
 <style>
-        body  
+        body
         {
         background-image: url(https://img.taste.com.au/7-t_jkYd/taste/2017/12/swp0080_recipe-integration-1980x1320px-b_v2-133202-1.jpg);
         }
 </style>
 </head>
 <div class="jumbotron text-center">
+    <div class="center_background">
         <h3>Ingredients List</h3>
 
         <p><%= link_to "Click here to create new Ingredient", new_ingredient_path%></p>
+      </div>
 </div>
 
+<div class="left_background">
 <h3>Search for an ingredient:</h3>
 <%= form_tag("/ingredients_search", method: "get") do %>
   <%= text_field_tag :q, params[:q] %>
@@ -29,7 +32,7 @@
             <% end %>
             </ul>
         </div>
-        
+
         <div class="col-sm-8.5">
             <h3><%="    Special Ingredients"%></h3>
             <ul>
@@ -39,4 +42,5 @@
             </ul>
         </div>
     </div>
+</div>
 </div>

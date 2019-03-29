@@ -3,13 +3,21 @@
 <style>
             body  {
               background-image: url(https://www.sundaypost.com/wp-content/uploads/sites/13/2017/12/waitrose_cocktail.gif);
-              
+
             }
       </style>
 </head>
 
 <body>
-<h2>List of Recipes: </h2>
+
+  <div class="jumbotron text-center">
+      <div class="center_background">
+          <h3>Recipe List</h3>
+
+          <p><%= link_to "Click here to create new Recipe", new_recipe_path%></p>
+        </div>
+  </div>
+<div class="left_background">
 
 <h3>Search for a recipe:</h3>
 <%= form_tag("/recipes_search", method: "get") do %>
@@ -17,9 +25,12 @@
   <%= submit_tag 'Search', name: nil %>
 <% end %>
 
+
+<h3>List of Recipes: </h3>
 <ul>
 <% @recipes.each do |r|%>
     <li><%= link_to r.name, recipe_path(r) %></li>
 <% end %>
 </ul>
+</div>
 </body>

@@ -17,6 +17,27 @@
                background: url(https://astrocampsummer.org/wp-content/uploads/2016/10/Salt-colors.gif) fixed center no-repeat;
                background-size: cover;
           }
+          .left_background{
+              width:absolute;
+              height:absolute;
+              background-color:rgba(0,0,0,0.8);
+              text-align:left;
+              color:white;
+            }
+          .center_background{
+              width:absolute;
+              height:absolute;
+              background-color:rgba(0,0,0,0.8);
+              text-align:center;
+              color:white;
+            }
+          .right_background{
+              width:absolute;
+              height:absolute;
+              background-color:rgba(0,0,0,0.8);
+              text-align:right;
+              color:white;
+            }
         </style>
 </head>
 
@@ -31,8 +52,8 @@
   </header>
 
   <body>
-    
-    <%= render 'layouts/messages' %> 
+
+    <%= render 'layouts/messages' %>
           <%= yield %>
 
    </body>

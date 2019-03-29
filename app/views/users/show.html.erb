@@ -11,9 +11,11 @@
 <body>
 
 <div class="jumbotron text-center">
+  <div class="center_background">
   <h2>User Profile</h2>
   <p> Username: <%= @user.username %>
   <p> First Name: <%= @user.first_name%>
+  </div>
 </div>
 
 
@@ -24,7 +26,7 @@
 
 
     <div class="col-sm-4">
-
+      <div class="left_background">
       <h5>Ingredients </h5>
 
        <ul>
@@ -35,10 +37,11 @@
 
             <li><%= link_to ing.name, ing %>
           <% end %>
-
+        </div>
     </div>
 
     <div class="col-sm-4">
+      <div class="center_background">
        <h5>Recipes </h5>
        <ul>
             <%= link_to "Click here for all our recipes", recipes_path %><br>
@@ -48,27 +51,34 @@
                 <p><li><%= link_to rec.name, rec %></li></p>
           <% end %>
         </ul>
+      </div>
     </div>
 
 
     <div class="col-sm-4">
+      <div class="right_background">
         <h5>History of recipes you saved:</h5>
             <ul>
               <% @recipes.each do |rec| %>
                 <li><%= link_to rec.name, rec %></li>
               <% end %>
             </ul>
+        </div>
     </div>
 
 
   </div>
 </div>
+<br>
+<br>
+<div class="center_background">
 <% if @self == true %>
   <%= link_to "Edit your account details", edit_user_path(@user) %>
   <%= form_tag "/users/#{@user.id}", method: "delete" do %>
     <%= submit_tag "Delete your account" %>
   <% end %>
 <% end %>
+</div>
 
 </body>
 </html>

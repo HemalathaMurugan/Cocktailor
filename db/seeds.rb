@@ -10,7 +10,6 @@ User.destroy_all
 
 recipes = JSON.parse(File.read(path))
 recipes.each do |recipe|
-  #byebug
   new_recipe = Recipe.create(name: recipe["name"], glass_type: recipe["glass"], category: recipe["category"], instructions: recipe["preparation"])
   recipe["ingredients"].each do |ingredient|
     if ingredient["ingredient"] != nil
