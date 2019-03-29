@@ -6,9 +6,24 @@ class Ingredient < ActiveRecord::Base
 
   validates :name, uniqueness: true
 
+  def amount
+    self.recipe_ingredient.amount
+  end
+
+  def amount=(amt)
+    self.recipe_ingredient.amount = amt
+
+  def self.main_ingredients
+    Ingredient.all.select{|i| i.ingredient_type == "Main ingredient"}
+  end
+
+  def self.special_ingredients
+    Ingredient.all.select{|i| i.ingredient_type == "Special ingredient"}
+  end
+
   def recipe_count
     recipe_count = 0
-    
+
     ri_s = RecipeIngredient.all
     ri_s.each do |ri|
       if ri.ingredient_id == self.id
@@ -18,6 +33,24 @@ class Ingredient < ActiveRecord::Base
     recipe_count
   end
 
+  def self.all_names
+    Ingredient.all.map{|i| [i, i.name.downcase]}
+  end
+
+  def self.search(search_term)
+    results = []
+    Ingredient.all_names.each do |ing|
+      if ing[1].include?(search_term)
+        results << ing[0]
+      end
+    end
+    results != [] ? ingredients = results : ingredients = Ingredient.all
+    return ingredients
+  end
+
+  def self.popularity
+    Ingredient.all.sort_by{|r| r.recipes.size}.reverse
+  end
 
   # def amount(recipe: recipe)
   #   byebug

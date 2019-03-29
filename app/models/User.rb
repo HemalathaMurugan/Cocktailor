@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
 
   def possible_recipes
     result = []
+    almost = []
     Recipe.ingredient_lists.each do |recipe|
       @list = []
       recipe[1].each do |ing|
@@ -19,8 +20,13 @@ class User < ActiveRecord::Base
         end
       end
       #byebug
-      if (@list - self.ingredients).empty?
+      test = @list - self.ingredients
+      if test.empty?
         result << recipe[0]
+      # elsif test.size == 1
+      #   test << recipe[0]
+      #   almost << test
+      #   #byebug
       end
     end
     return result

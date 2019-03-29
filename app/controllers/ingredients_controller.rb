@@ -21,8 +21,9 @@ class IngredientsController < ApplicationController
 
   #Read
   def index
-    @main_ingredients = Ingredient.all.select{|i| i.ingredient_type == "Main ingredient"}
-    @special_ingredients = Ingredient.all.select{|i| i.ingredient_type == "Special ingredient"}
+    Recipe.popularity
+    @main_ingredients = Ingredient.main_ingredients
+    @special_ingredients = Ingredient.special_ingredients
 
   end
 
@@ -42,13 +43,22 @@ class IngredientsController < ApplicationController
   def destroy
   end
 
+  def search
+    search_term = params.permit(:q)[:q]
+    @ingredients = Ingredient.search(search_term)
+    @main_ingredients = Ingredient.main_ingredients & @ingredients
+    @special_ingredients = Ingredient.special_ingredients & @ingredients
+
+    render :index
+  end
+
   def add_ingredient
     @ingredient = Ingredient.find(params[:id])
     UserIngredient.create(user: @user, ingredient: @ingredient)
     redirect_to @ingredient
   end
 
- 
+
   private
 
     #strong params

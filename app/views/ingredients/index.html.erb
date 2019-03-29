@@ -7,10 +7,15 @@
 </head>
 <div class="jumbotron text-center">
         <h3>Ingredients List</h3>
-        
+
         <p><%= link_to "Click here to create new Ingredient", new_ingredient_path%></p>
 </div>
 
+<h3>Search for an ingredient:</h3>
+<%= form_tag("/ingredients_search", method: "get") do %>
+  <%= text_field_tag :q, params[:q] %>
+  <%= submit_tag 'Search', name: nil %>
+<% end %>
 
 <div class="container">
   <div class="row">

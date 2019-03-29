@@ -91,18 +91,8 @@ class RecipesController < ApplicationController
     end
 
     def search
-      search = params.permit(:q)[:q]
-      results = []
-      Recipe.all_names.each do |rec|
-        if rec.include?(search)
-          results << Recipe.find_by(name: rec.titleize)
-        end
-      end
-      if results != []
-        @recipes = results
-      else
-        @recipes = Recipe.all
-      end
+      search_term = params.permit(:q)[:q]
+      @recipes = Recipe.search(search_term)
       render :index
     end
 
