@@ -48,9 +48,7 @@ class Recipe < ActiveRecord::Base
     user_count
   end
 
-<<<<<<< HEAD
-  
-=======
+
   def self.all_names
     Recipe.all.map{|r| [r, r.name.downcase]}
   end
@@ -79,5 +77,4 @@ class Recipe < ActiveRecord::Base
     end
   end
 
->>>>>>> 889c75b57139de7491e2f67d88dbc5e68a033623
 end
