@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   post '/add_recipe/:id', to: 'recipes#add_recipe'
   post '/add_all_ingredients/:id', to: 'recipes#add_ingredients'
   post '/add_ingredient/:id', to: 'ingredients#add_ingredient'
+  post '/rate_this_recipe/:id', to: 'recipes#rate_this_recipe'
   delete '/sessions', to: 'sessions#destroy'
   get '/', to: 'sessions#landing'
 end
