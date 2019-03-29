@@ -57,6 +57,24 @@ class Recipe < ActiveRecord::Base
   end
 
 
+  
+
+
+  # def user_rating(params)
+  #   user_rating = 0
+    
+  #   ur_s = UserRecipes.all
+  #   ur_s.each do |ur|
+  #     if ur.recipe_id == self.id
+  #       user_id = ur.user_id
+      
+
+
+
+  # end
+
+
+
   def self.all_names
     Recipe.all.map{|r| [r, r.name.downcase]}
   end

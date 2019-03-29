@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <title>FooBarTender</title>
+  <title>Cocktailor</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -38,11 +38,18 @@
               text-align:left;
               color:white;
             }
+          .title_background{
+              width:absolute;
+              height:absolute;
+              background-color:rgba(0,0,0,0);
+              text-align:center;
+              color:white;
+            }
         </style>
 </head>
 
   <header>
-    FooBartender- <%= link_to "Home", @user%>
+    Cocktailor- <%= link_to "Home", @user%>
     ||
     <%= link_to "Recipes", recipes_path%>
     ||
