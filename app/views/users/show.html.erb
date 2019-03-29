@@ -27,7 +27,7 @@
                 <%= submit_tag "Delete your account" %>
             <% end %>
       <% end %>
-      
+
     </ul>
   </div>
 </nav>
@@ -94,7 +94,7 @@
           <h6>Possible cocktails with ingredients from your bar:</h6>
 
           <% @possible_recipes.each do |rec| %>
-                <p><li><%= link_to rec.name, rec %></li></p>
+                <li><%= link_to rec.name, rec %></li>
           <% end %>
         </ul>
       </div>
