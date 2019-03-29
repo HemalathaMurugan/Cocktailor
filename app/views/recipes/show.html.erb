@@ -66,7 +66,7 @@
   <%= form_with(url: "/rate_this_recipe/#{@recipe.id}", method: :post) do |f|%>
     <%= f.number_field :rating, :class => 'text_field', :step => 0.5%>
     <%= f.submit "Rate" %>
-    
+
 <% if flash[:alert] %>
     <div class="alert"><%= flash[:alert][0] %></div>
   <% end %>

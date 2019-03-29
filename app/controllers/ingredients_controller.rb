@@ -1,6 +1,6 @@
 class IngredientsController < ApplicationController
+  skip_before_action :authenticate, only: [:index]
 
-  #before_action :define_current_ingredient
   #Create
   def new
     @errors = flash[:errors] || {}

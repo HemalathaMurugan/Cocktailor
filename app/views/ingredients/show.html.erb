@@ -5,7 +5,7 @@
 <style>
             body  {
               background-image: url(https://goop.com/wp-content/uploads/1999/06/01-goop_KetelOne_Hibiscus_Seabreeze-Hero.gif);
-              
+
             }
 </style>
 </head>
@@ -29,7 +29,7 @@
 
 
 
-<h3>Drinks that include <%= @ingredient.name %></h3>
+<h3><%=  @ingredient.recipe_count %> drinks include <%= @ingredient.name %></h3>
 <ul>
   <% @recipes.each do |rec| %>
     <li>
@@ -37,13 +37,3 @@
     </li>
   <% end %>
 </ul><br>
-
-<h3>How famous is this ingredient</h3>
-  <ul>
-  <%= "No of recipes having this ingredient: "%>
-  <%=  @ingredient.recipe_count %>
-  </ul>
-  
-
-
-

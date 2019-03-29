@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
     skip_before_action :authenticate, only: [:index]
-    
+
     #Create
     def new
       @recipe = Recipe.new

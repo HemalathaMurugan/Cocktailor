@@ -10,7 +10,7 @@ User.destroy_all
 
 recipes = JSON.parse(File.read(path))
 recipes.each do |recipe|
-  new_recipe = Recipe.create(name: recipe["name"], glass_type: recipe["glass"], category: recipe["category"], instructions: recipe["preparation"])
+  new_recipe = Recipe.create(name: recipe["name"], glass_type: recipe["glass"], category: recipe["category"], instructions: recipe["preparation"], rating: nil)
   recipe["ingredients"].each do |ingredient|
     if ingredient["ingredient"] != nil
       if ingredient["label"] != nil
@@ -30,7 +30,6 @@ end
   User.create(
     username: Faker::Name.name,
     first_name: Faker::Name.first_name,
-    #password_digest: SecureRandom.alphanumeric(8)
     password_digest: Faker::Internet.password(8)
   )
   end
