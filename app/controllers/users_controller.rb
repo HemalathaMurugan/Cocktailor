@@ -14,11 +14,11 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.valid?
         @user.save
-        flash[:success] = "You signed up successfully!"
+        flash[:notice] = "You signed up successfully!"
         
         redirect_to user_path(@user)
     else
-      flash[:danger] = "Invalid username or password! Try again."
+      flash[:alert] = "Invalid username or password! Try again."
       
       render :new
 
@@ -35,6 +35,12 @@ class UsersController < ApplicationController
     @ingredients = @user.ingredients
     @possible_recipes = @user.possible_recipes
     @recipes = @user.recipes
+    if @user
+      flash[:notice] = "You are currently logged in as: #{@user.username}"
+    else
+      #render :new, alert: "Invalid Login! Try again"
+      flash[:alert] = "Invalid Login! Try again"
+    end
   end
 
   #Update

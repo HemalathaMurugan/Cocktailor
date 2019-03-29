@@ -52,4 +52,5 @@ class Recipe < ActiveRecord::Base
     user_count
   end
 
+  
 end
