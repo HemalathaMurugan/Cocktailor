@@ -4,6 +4,7 @@ class CreateRecipes < ActiveRecord::Migration[5.2]
       t.string :name
       t.text :description
       t.text :instructions
+      t.float :rating
       t.string :glass_type
       t.string :category
     end

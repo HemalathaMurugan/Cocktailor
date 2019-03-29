@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2019_03_27_025048) do
     t.string "name"
     t.text "description"
     t.text "instructions"
+    t.float "rating"
     t.string "glass_type"
     t.string "category"
   end

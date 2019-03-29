@@ -60,11 +60,15 @@
   <%=  @recipe.user_count %>
   </ul>
 
-
 <h3>Rate this recipe</h3>
 <ul>
   <p>Enter your rating on a scale of 1 to 5</p>
   <%= form_with(url: "/rate_this_recipe/#{@recipe.id}", method: :post) do |f|%>
     <%= f.number_field :rating, :class => 'text_field', :step => 0.5%>
     <%= f.submit "Rate" %>
+    
+<% if flash[:alert] %>
+    <div class="alert"><%= flash[:alert][0] %></div>
+  <% end %>
+
   <% end %>

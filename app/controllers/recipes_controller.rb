@@ -58,8 +58,16 @@ class RecipesController < ApplicationController
     end
 
     def rate_this_recipe
+      #byebug
       @recipe = Recipe.find(params[:id])
-      @recipe.update(rating: params)
+      @recipe.assign_attributes(params.permit(:rating))
+      if @recipe.valid?
+        @recipe.save
+      else
+        flash[:alert] = @recipe.errors[:rating]
+      end
+      #byebug
+      redirect_to @recipe
     end
 
     def add_recipe

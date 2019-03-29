@@ -6,7 +6,16 @@ class Recipe < ActiveRecord::Base
 
   validates :name, uniqueness: true
   validates :name, presence: true
+  validate :check_rating
   before_save :titleize_glasses, :fix_nil_in_categories, :titleize_names
+
+  def check_rating
+    if self.rating <=5 && self.rating >=1
+    elsif self.rating == nil
+    else
+      errors.add(:rating, "Rating must be a number between 1 and 5.")
+    end
+  end
 
   def titleize_glasses
     self.glass_type = self.glass_type.titleize
